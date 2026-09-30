@@ -1,0 +1,26 @@
+# Metadados e arquivos temporários de SO (Windows / WSL / macOS)
+*:Zone.Identifier
+.DS_Store
+Thumbs.db
+*.tmp
+*.bak
+
+# Credenciais locais, chaves e túneis (NUNCA versionar)
+.ssh/
+.kube/
+*.pem
+*.key
+
+# Caches de ferramentas, runtimes e histórico
+.cache/
+cache/
+*.log
+.zcompdump*
+.history
+.bash_history
+.zsh_history
+
+# Ambientes locais e segredos
+.env
+.env.local
+.env.*.local
