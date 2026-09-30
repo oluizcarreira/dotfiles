@@ -248,4 +248,6 @@ Antes de executar os scripts em outra máquina, revise principalmente:
 
 ## 📄 Licença
 
-Este projeto contém configurações pessoais e pode ser utilizado como referência para a criação e manutenção de um ambiente Linux personalizado.
+Este projeto está sob a licença [MIT](LICENSE). Consulte o ficheiro `LICENSE` para obter mais detalhes.
+
+As configurações e scripts destinam-se a uso pessoal, mas podem ser livremente utilizados, modificados e distribuídos como referência para o provisionamento e manutenção de ambientes Linux.
