@@ -1,156 +1,156 @@
 # 🛠️ My Dotfiles & System Setup
 
-Configurações pessoais, automação de pós-instalação e ambientes isolados para distribuições Linux imutáveis, com foco em **Aurora Linux** e **Bluefin**.
+Personal configurations, post-installation automation, and isolated environments for immutable Linux distributions, with a focus on **Aurora Linux** and **Bluefin**.
 
-Embora o projeto tenha sido desenvolvido pensando nessas distribuições, os scripts e configurações podem ser adaptados e utilizados em outros sistemas Linux.
-
----
-
-## 📋 Pré-requisitos
-
-Antes de iniciar, certifique-se de que você possui:
-
-- Uma instalação funcional do Linux;
-- `git` instalado;
-- Acesso ao GitHub;
-- Uma chave SSH configurada para acessar este repositório privado;
-- Conexão com a internet.
+Although this project was designed with these distributions in mind, the scripts and configurations can be adapted and used on other Linux systems.
 
 ---
 
-## 🔐 Configuração do SSH
+## 📋 Prerequisites
 
-Como este repositório é privado, configure sua chave SSH antes de tentar cloná-lo.
+Before getting started, make sure you have:
 
-### 1. Gerar uma nova chave SSH
+- A working Linux installation;
+- `git` installed;
+- Access to GitHub;
+- An SSH key configured to access this private repository;
+- An active internet connection.
 
-Execute no terminal:
+---
+
+## 🔐 SSH Configuration
+
+Since this is a private repository, configure your SSH key before attempting to clone it.
+
+### 1. Generate a New SSH Key
+
+Run the following command in your terminal:
 
 ```bash
-ssh-keygen -t ed25519 -C "seu-email@exemplo.com"
+ssh-keygen -t ed25519 -C "your-email@example.com"
 ```
 
-Pressione `Enter` para aceitar o caminho padrão:
+Press `Enter` to accept the default path:
 
 ```text
 ~/.ssh/id_ed25519
 ```
 
-Caso seja solicitado, você também poderá definir uma senha para proteger sua chave privada.
+If prompted, you can also set a passphrase to protect your private key.
 
-### 2. Copiar a chave pública
+### 2. Copy the Public Key
 
-Exiba o conteúdo da chave pública:
+Display your public key:
 
 ```bash
 cat ~/.ssh/id_ed25519.pub
 ```
 
-Copie todo o conteúdo exibido no terminal.
+Copy the entire output displayed in the terminal.
 
-### 3. Adicionar a chave ao GitHub
+### 3. Add the Key to GitHub
 
-No GitHub:
+On GitHub:
 
-1. Acesse **Settings**;
-2. Vá até **SSH and GPG keys**;
-3. Clique em **New SSH key**;
-4. Defina um nome para identificar o computador;
-5. Cole o conteúdo da chave pública;
-6. Salve a chave.
+1. Go to **Settings**;
+2. Navigate to **SSH and GPG keys**;
+3. Click **New SSH key**;
+4. Give the key a name to identify the computer;
+5. Paste the public key;
+6. Save the key.
 
 ---
 
-## 🚀 Instalação
+## 🚀 Installation
 
-Depois de configurar o SSH, clone o repositório e execute o script de inicialização.
+After configuring SSH, clone the repository and run the bootstrap script.
 
-### 1. Clonar o repositório
+### 1. Clone the Repository
 
 ```bash
-mkdir -p ~/Documents/projetos
+mkdir -p ~/Documents/projects
 
 git clone git@github.com:oluizcarreira/dotfiles.git \
-    ~/Documents/projetos/dotfiles
+    ~/Documents/projects/dotfiles
 ```
 
-### 2. Executar o bootstrap
+### 2. Run the Bootstrap Script
 
 ```bash
-cd ~/Documents/projetos/dotfiles
+cd ~/Documents/projects/dotfiles
 
 chmod +x bootstrap.sh
 ./bootstrap.sh
 ```
 
-O `bootstrap.sh` funciona como o orquestrador principal e executa os scripts responsáveis pela configuração do ambiente.
+The `bootstrap.sh` script acts as the main orchestrator and executes the scripts responsible for configuring the environment.
 
 ---
 
-## 📂 Estrutura do Repositório
+## 📂 Repository Structure
 
 ```text
 dotfiles/
-├── bootstrap.sh             # Script principal de configuração
-├── .gitignore               # Arquivos que não devem ser versionados
-├── README.md                # Documentação do projeto
+├── bootstrap.sh             # Main configuration script
+├── .gitignore               # Files that should not be versioned
+├── README.md                # Project documentation
 │
-├── home/                    # Arquivos de configuração do usuário
+├── home/                    # User configuration files
 │   ├── .gitconfig
 │   ├── .p10k.zsh
 │   ├── .tool-versions
 │   └── .zshrc
 │
 └── scripts/
-    ├── install-apps.sh      # Instalação de aplicativos e permissões
-    ├── install-cli.sh       # Ferramentas CLI, Zsh, plugins, fontes e mise
-    └── setup-distrobox.sh   # Criação dos ambientes Distrobox
+    ├── install-apps.sh      # Application installation and permissions
+    ├── install-cli.sh       # CLI tools, Zsh, plugins, fonts, and mise
+    └── setup-distrobox.sh   # Distrobox environment setup
 ```
 
 ---
 
-## ⚙️ O que o Bootstrap Configura?
+## ⚙️ What Does the Bootstrap Configure?
 
-O processo de instalação é dividido em diferentes etapas para facilitar a manutenção e permitir que cada parte do ambiente seja configurada separadamente.
+The installation process is divided into different stages to simplify maintenance and allow each part of the environment to be configured independently.
 
-### 📦 Aplicações
+### 📦 Applications
 
-O script `install-apps.sh` é responsável por configurar os aplicativos utilizados no sistema, incluindo aplicações distribuídas através do **Flatpak** e suas respectivas permissões.
+The `install-apps.sh` script is responsible for configuring the applications used on the system, including applications distributed through **Flatpak** and their respective permissions.
 
-### 🖥️ Ferramentas de Terminal
+### 🖥️ Terminal Tools
 
-O script `install-cli.sh` configura ferramentas utilizadas no ambiente de desenvolvimento e no terminal, incluindo:
+The `install-cli.sh` script configures tools used in the development environment and terminal, including:
 
 - Homebrew;
 - Zsh;
 - Oh My Zsh;
-- Plugins do Zsh;
+- Zsh plugins;
 - Powerlevel10k;
-- Fontes;
+- Fonts;
 - `mise`;
-- Outras ferramentas de linha de comando.
+- Other command-line tools.
 
 ### 📦 Distrobox
 
-O script `setup-distrobox.sh` cria os ambientes isolados utilizados para desenvolvimento e softwares específicos.
+The `setup-distrobox.sh` script creates the isolated environments used for development and specific software.
 
 ---
 
-# 📦 Ambientes Isolados — Distrobox
+# 📦 Isolated Environments — Distrobox
 
-O projeto utiliza **Distrobox** para manter o sistema base o mais limpo possível.
+This project uses **Distrobox** to keep the base operating system as clean as possible.
 
-A ideia é utilizar o sistema operacional imutável como base e executar ferramentas de desenvolvimento e softwares específicos dentro de containers.
+The idea is to use the immutable operating system as the foundation while running development tools and specific software inside containers.
 
-Os containers compartilham o diretório `$HOME`, permitindo trabalhar com os mesmos arquivos pessoais e projetos do sistema principal.
+The containers share the `$HOME` directory, allowing the same personal files and projects to be accessed from both the containers and the main system.
 
 ---
 
-## 💻 Desenvolvimento — `dev-box`
+## 💻 Development — `dev-box`
 
-O ambiente `dev-box` é baseado no **Ubuntu LTS** e concentra as principais ferramentas necessárias para desenvolvimento.
+The `dev-box` environment is based on **Ubuntu LTS** and contains the main tools required for development.
 
-Entre os componentes instalados estão:
+The installed components include:
 
 - `build-essential`;
 - `git`;
@@ -158,9 +158,9 @@ Entre os componentes instalados estão:
 - `libssl-dev`;
 - `libpq-dev`;
 - `python3-dev`;
-- Outras ferramentas necessárias para desenvolvimento.
+- Other development tools and dependencies.
 
-### Entrar no ambiente
+### Enter the Environment
 
 ```bash
 distrobox enter dev-box
@@ -170,84 +170,86 @@ distrobox enter dev-box
 
 ## 🎬 DaVinci Resolve — `davinci-box`
 
-O ambiente `davinci-box` é baseado no **Rocky Linux 9** e é destinado à execução do **DaVinci Resolve**, utilizando aceleração de GPU NVIDIA.
+The `davinci-box` environment is based on **Rocky Linux 9** and is intended to run **DaVinci Resolve** using NVIDIA GPU acceleration.
 
-### Entrar no ambiente
+### Enter the Environment
 
 ```bash
 distrobox enter davinci-box
 ```
 
-### Instalar o DaVinci Resolve
+### Install DaVinci Resolve
 
-O instalador oficial `.run` da Blackmagic Design deve ser executado dentro do container.
+The official `.run` installer provided by Blackmagic Design should be executed inside the container.
 
-Após a instalação, o aplicativo pode ser exportado para o menu do sistema:
+After installation, the application can be exported to the system application menu:
 
 ```bash
 distrobox-export --app /opt/resolve/bin/resolve
 ```
 
-Depois da exportação, o DaVinci Resolve poderá aparecer junto aos demais aplicativos do sistema.
+After exporting it, DaVinci Resolve should appear alongside the other applications installed on the system.
 
 ---
 
-# 🌐 Aplicações Web — PWA
+# 🌐 Web Applications — PWA
 
-Algumas aplicações web são utilizadas como aplicativos independentes através do navegador.
+Some web applications are used as standalone applications through the browser.
 
 ## Microsoft Teams
 
-O Microsoft Teams não é instalado via Flatpak neste setup, principalmente para evitar possíveis problemas relacionados à autenticação empresarial e SSO.
+Microsoft Teams is not installed through Flatpak in this setup, mainly to avoid potential issues related to enterprise authentication and SSO.
 
-Recomenda-se utilizar o **Google Chrome** ou **Brave** para criar uma aplicação web dedicada.
+It is recommended to use **Google Chrome** or **Brave** to create a dedicated web application.
 
-Acesse:
+Access:
 
 ```text
 https://teams.microsoft.com
 ```
 
-Depois, no navegador, utilize a opção **Instalar Microsoft Teams** ou **Instalar aplicativo**, dependendo do navegador utilizado.
+Then, in the browser, use the **Install Microsoft Teams** or **Install app** option, depending on the browser being used.
 
 ---
 
-# 🧩 Filosofia do Projeto
+# 🧩 Project Philosophy
 
-Este projeto segue alguns princípios:
+This project follows a few principles:
 
-- 🧹 Manter o sistema base o mais limpo possível;
-- 📦 Utilizar containers para ferramentas e ambientes específicos;
-- 🔄 Facilitar a reprodução do ambiente em uma nova instalação;
-- 🛠️ Automatizar tarefas repetitivas de configuração;
-- 🔐 Evitar versionar informações sensíveis;
-- 📝 Manter as configurações pessoais versionadas e organizadas.
+- 🧹 Keep the base operating system as clean as possible;
+- 📦 Use containers for specific tools and environments;
+- 🔄 Make the environment easy to reproduce on a fresh installation;
+- 🛠️ Automate repetitive configuration tasks;
+- 🔐 Avoid versioning sensitive information;
+- 📝 Keep personal configurations versioned and organized.
 
-A ideia é que uma nova instalação do sistema possa ser configurada com o mínimo possível de intervenção manual.
-
----
-
-## ⚠️ Observações
-
-Este repositório contém configurações pessoais e foi desenvolvido para atender às necessidades específicas do meu ambiente.
-
-Antes de executar os scripts em outra máquina, revise principalmente:
-
-- Aplicativos instalados;
-- Caminhos de diretórios;
-- Permissões;
-- Configurações específicas de hardware;
-- Drivers de GPU;
-- Configurações do Distrobox;
-- Variáveis de ambiente;
-- Credenciais e tokens.
-
-**Nunca adicione chaves privadas, senhas, tokens ou outras credenciais ao repositório.**
+The goal is to configure a fresh system with as little manual intervention as possible.
 
 ---
 
-## 📄 Licença
+## ⚠️ Notes
 
-Este projeto está sob a licença [MIT](LICENSE). Consulte o ficheiro `LICENSE` para obter mais detalhes.
+This repository contains personal configurations and was developed to meet the specific requirements of my environment.
 
-As configurações e scripts destinam-se a uso pessoal, mas podem ser livremente utilizados, modificados e distribuídos como referência para o provisionamento e manutenção de ambientes Linux.
+Before running the scripts on another machine, review the following:
+
+- Installed applications;
+- Directory paths;
+- Permissions;
+- Hardware-specific configurations;
+- GPU drivers;
+- Distrobox configurations;
+- Environment variables;
+- Credentials and tokens.
+
+> **Never add private keys, passwords, tokens, or other credentials to this repository.**
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License**.
+
+See the [`LICENSE`](LICENSE) file for the complete license text.
+
+The configurations and scripts are intended for personal use, but may be freely used, modified, and distributed as a reference for provisioning and maintaining Linux environments.
